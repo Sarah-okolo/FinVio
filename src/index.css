@@ -1,68 +1,168 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* LIGHT MODE – teal primary + invoice-style blues/grays */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --radius: 0.625rem;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --background: #f8f8fb;      /* light app background (#F8F8FB) */
+  --foreground: #1e2139;      /* main text (#1E2139) */
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  --card: #ffffff;
+  --card-foreground: #1e2139;
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
+  --popover: #ffffff;
+  --popover-foreground: #1e2139;
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
+  /* Primary (teal) */
+  --primary: #e2a26a;         /* main teal */
+  --primary-foreground: #f8f8fb;
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
+  /* Neutrals / subtle surfaces */
+  --secondary: #dfe3fa;       /* soft panel bg (#DFE3FA) */
+  --secondary-foreground: #1e2139;
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  --muted: #bbbfd7;
+  --muted-foreground: #888eb0; /* muted text (#888EB0) */
+
+  /* Accent (lighter teal) */
+  --accent: #ea9f5e;
+  --accent-foreground: #724c2b;
+
+  /* Status */
+  --destructive: #ec5757;     /* error/red (#EC5757) */
+
+  /* Borders / inputs / focus */
+  --border: #dfe3fa;
+  --input: #dfe3fa;
+  --ring: #eb9d5a;
+
+  /* Charts */
+  --chart-1: #ea9f5e;  /* teal */
+  --chart-2: #252945;  /* navy */
+  --chart-3: #ec5757;  /* red */
+  --chart-4: #7e88c3;  /* slate-blue */
+  --chart-5: #eb9d5a;  /* light teal */
+
+  /* Sidebar (dark-on-light layout) */
+  --sidebar: #252945;              /* sidebar bg (#252945) */
+  --sidebar-foreground: #dfe3fa;   /* sidebar text */
+  --sidebar-primary: #14b8a6;
+  --sidebar-primary-foreground: #0c0e16;
+  --sidebar-accent: #1e2139;
+  --sidebar-accent-foreground: #dfe3fa;
+  --sidebar-border: #1e2139;
+  --sidebar-ring: #a0500a;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* DARK MODE – deep navy background, brighter teal */
+.dark {
+  --background: #10131d;      /* main dark bg (#0C0E16) */
+  --foreground: #dfe3fa;      /* main text */
+
+  --card: #1e2139;            /* card bg */
+  --card-foreground: #dfe3fa;
+
+  --popover: #1e2139;
+  --popover-foreground: #dfe3fa;
+
+  /* Primary (brighter teal for contrast) */
+  --primary: #c0824b;
+  --primary-foreground: #0c0e16;
+
+  /* Neutrals */
+  --secondary: #252945;
+  --secondary-foreground: #dfe3fa;
+
+  --muted: #3a3f68;
+  --muted-foreground: #888eb0;
+
+  /* Accent */
+  --accent: #ea9f5e;
+  --accent-foreground: #724c2b;
+
+  /* Status */
+  --destructive: #ec5757;
+
+  /* Borders / inputs / focus */
+  --border: #252945;
+  --input: #252945;
+  --ring: #eb9d5a;
+
+  /* Charts */
+  --chart-1: #5eead4;  /* teal */
+  --chart-2: #eb9d5a;  /* teal (darker) */
+  --chart-3: #ec5757;  /* red */
+  --chart-4: #7e88c3;  /* slate-blue */
+  --chart-5: #dfe3fa;  /* light bluish */
+
+  /* Sidebar */
+  --sidebar: #141625;              /* slightly lighter than bg */
+  --sidebar-foreground: #dfe3fa;
+  --sidebar-primary: #5eead4;
+  --sidebar-primary-foreground: #0c0e16;
+  --sidebar-accent: #252945;
+  --sidebar-accent-foreground: #dfe3fa;
+  --sidebar-border: #252945;
+  --sidebar-ring: #a0500a;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+  body {
+    @apply bg-background text-foreground;
   }
 }
