@@ -28,6 +28,7 @@ export default function Register() {
 
   const { mutate, isPending } = useMutation({
     mutationFn: (data: z.infer<typeof registerSchema>) => {
+      //eslint-disable-next-line
       const { confirmPassword, ...payload } = data;
       return axiosInstance.post("/register", payload);
     },
